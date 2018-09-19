@@ -1,33 +1,27 @@
 <template>
-    <div class="skills">
-            <h2>hello world this is my new Skills</h2>
-            <!-- {{name}}
-            {{btnState ? 'The button is disabled' : 'the button is active'}} -->
-        <!-- <button v-on:clicl='changeName' v-bind:disabled='btnState'>change Name </button> -->
-        <div class="holder">
-            <form @submit.prevent="addSkill">
-                <input type="text" placeholder="Enter a skill you have ... " v-model="skill" v-validate="'min:5'"  name="skill">
-                <transition name="alert-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
-                <p class="alert" v-if="errors.has('skill')">{{errors.first('skill')}}</p>
-                </transition>
-                <!-- <input type="checkbox" name="" id="checkbox" v-model="checked"> -->
-            </form>
-                <!-- {{skill}} -->
-            <ul>
-                <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
-                <li v-for="(data,index) in skills" :key="index"> 
-                    {{data.skill}}
-                </li>
-                </transition-group>
-            </ul>
+  <div class="hello">
+    <div class="holder">
 
-            <p>this are the skills that you have </p>
-            <!-- <p v-if="skills.length >=2">you have more then 1 skills </p>
-            <p v-else>you have less then 1 skills </p> -->
-        </div>
-        <!-- <div v-bind:class="{alert : showAlert,'another-class':showClass}"> hello
-        </div> -->
+      <form @submit.prevent="addSkill">
+        <input type="text" placeholder="Enter a skill you have.." v-model="skill" v-validate="'min:5'" name="skill">
+
+        <transition name="alert-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
+          <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
+        </transition>
+      </form>
+
+      <ul>
+        <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+          <li v-for="(data, index) in skills" :key='index'>
+            {{ data.skill }}
+            <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
+          </li>
+        </transition-group>
+      </ul>
+
+      <p>These are the skills that you possess.</p>
     </div>
+</div>
 </template>
 
 <script>
@@ -44,7 +38,7 @@ export default {
                 {"skill":"PHP"},
                 {"skill":"Laravel"},
                 {"skill":"Angular"}
-            ],
+            ]
             // showAlert: true,
             // showClass : true
         }
@@ -66,7 +60,6 @@ export default {
    
 }
 </script>
-
 <style scoped>
 /* .alert{
     background-color: red;
@@ -77,10 +70,15 @@ export default {
 .another-class{
     border:5px solid green;
 } */
-@import url(https://cdn.jsdelivr.net/npm/animate.css@3.5.1);
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; 
 .holder{
     background: #ffff;
 
+}
+i {
+  float:right;
+  cursor:pointer;
 }
 ul{
     margin:0%;

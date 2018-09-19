@@ -4,17 +4,17 @@ import Skills from './components/Skills.vue'
 import About from './components/About.vue'
 
 Vue.use(Router)
-    export default new Router({
-        routes:[
-            {
-                path: '/',
-                name: 'Skills',
-                components:Skills
-            },
-            {
-                 path: '/about',
-                 name: 'about',
-                 components: About
-            }
-        ]
-    })
+
+export default new Router({
+  routes: [{
+      path: '/',
+      name: 'skills',
+      component: Skills
+    },
+    {
+      path: '/about/:name',
+      name: 'about',
+      component: About
+    }
+  ]
+})
